@@ -1,0 +1,82 @@
+-- 1.Создание структуры БД
+-- DROP TABLE IF EXISTS posts_key_words,
+-- 					 posts,
+-- 					 key_words,
+-- 					 users;
+
+-- CREATE TABLE users (
+--     id BIGSERIAL PRIMARY KEY,
+--     name TEXT NOT NULL,
+-- 	   email TEXT NOT NULL
+-- );
+
+-- CREATE TABLE key_words (
+--     id BIGSERIAL PRIMARY KEY,
+--     word TEXT NOT NULL
+-- );
+
+-- CREATE TABLE posts (
+--     id BIGSERIAL PRIMARY KEY,
+-- 	   user_id BIGINT REFERENCES users(id),
+--     text TEXT NOT NULL,
+-- 	   date TIMESTAMP NOT NULL
+-- );
+
+
+-- CREATE TABLE posts_key_words (
+--     id BIGSERIAL PRIMARY KEY,
+--     post_id BIGINT REFERENCES posts(id),
+--     key_word_id BIGINT REFERENCES key_words(id)
+-- );
+
+-- 2.Наполнение БД некоторыми тестовыми данными.
+-- INSERT INTO users(name, email) VALUES
+--  	('Виктор', 'vit@mail.ru'),
+--  	('Антон','ant@gmail.com'),
+--      ('Виктория','vik@gmail.com');
+
+-- INSERT INTO key_words(word) VALUES
+-- 	('дайвинг'), 
+-- 	('фотография'), 
+-- 	('путешествие'),
+-- 	('маркетинг'), 
+-- 	('учеба');
+
+-- INSERT INTO posts(user_id, text, date) VALUES
+-- 	(1, 'Пост об обучении работе с нейронными сетями', '20230613 183010'),
+-- 	(2, 'Пост о путешествиях по миру', '20220210 152035'),
+-- 	(3, 'Пост о том, как учиться на профессионального фотографа', '20230929 1013'),
+-- 	(2, 'Пост о дайвинге', '20241015 2005'),
+-- 	(1, 'Пост с рассуждениями на тему маркетинга', '20230307 1540');
+
+-- INSERT INTO posts_key_words(post_id, key_word_id) VALUES
+-- 	(1, 5), (2, 3), (3, 2), (3, 5), (4, 1), (5, 4);
+
+-- 5.Получение всех объявлений с именами пользователей.
+-- SELECT posts., users.name
+-- FROM posts, users
+-- WHERE posts.user_id = users.id;
+
+-- 6.Получение всех объявлений для некоторого ключевого слова.
+-- SELECT posts.id,
+-- 	   posts.user_id,
+-- 	   posts.text,
+-- 	   posts.date
+-- --	   key_words.word AS key_word
+-- FROM posts
+-- JOIN posts_key_words ON posts_key_words.post_id = posts.id
+-- JOIN key_words ON posts_key_words.key_word_id = key_words.id
+-- WHERE key_words.word = 'учеба';
+
+--8.Добавление ограничения проверки времени создания объявления
+--объявление должно быть создано позднее 1 января 2021 года 
+--в формате Unix Time.
+-- ALTER TABLE posts ADD CONSTRAINT pub_date_min CHECK (date  '20210101');
+
+--9.Добавление и удаление ограничения уникальности времени создания.
+-- ALTER TABLE posts ADD CONSTRAINT pub_date_unique UNIQUE(date);
+-- ALTER TABLE posts DROP CONSTRAINT pub_date_unique;
+
+--10.Изменение столбца. Установка для времени создания значения по умолчанию.
+-- ALTER TABLE posts ALTER COLUMN date SET DEFAULT 'now';
+-- INSERT INTO posts(user_id, text) VALUES
