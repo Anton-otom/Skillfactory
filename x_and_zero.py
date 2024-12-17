@@ -1,3 +1,7 @@
+"""
+Игра крестики-нолики
+"""
+
 import re
 import random
 
