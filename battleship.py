@@ -1,3 +1,7 @@
+"""
+Игра морской бой
+"""
+
 import re
 import random
 from time import sleep
