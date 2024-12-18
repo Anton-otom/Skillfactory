@@ -3,9 +3,9 @@ pip install telebot
 pip install pytelegrambotapi
 """
 
-TOKEN = "7888962335:AAGk0Jw6High7e_uDzhvpSOy_v62yylrkHI"
+TOKEN = "Токен"
 
-API_KEY = "56ab770bcd361bee53532808"
+API_KEY = "API"
 
 keys = {
     'рубль': 'RUB',
