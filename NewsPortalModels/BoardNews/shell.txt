@@ -1,0 +1,115 @@
+from BoardNews.models import Author, Category, Post, PostCategory, Comment
+from django.contrib.auth.models import User
+
+Задание1. Создать двух пользователей (с помощью метода User.objects.create_user('username')).
+user1 = User.objects.create_user('Евлампий')
+user2 = User.objects.create_user('Добрыня')
+
+Задание2. Создать два объекта модели Author, связанные с пользователями.
+author1 = Author.objects.create(user=user1)
+author2 = Author.objects.create(user=user2)
+
+Задание3. Добавить 4 категории в модель Category.
+category1 = Category.objects.create(category_name='Политика')
+category2 = Category.objects.create(category_name='Образование')
+category3 = Category.objects.create(category_name='Экономика')
+category4 = Category.objects.create(category_name='Путешествия')
+
+Задание4. Добавить 2 статьи и 1 новость.
+Post1 = Post.objects.create(author_post=author1, type_post='ar', title='Уровни образования', text='Text1Text1Text1Te
+xt1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text
+1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1T
+ext1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Tex
+t1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1
+Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Te
+xt1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text
+1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1T
+ext1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Tex
+t1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1
+Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1Text1')
+
+Post2 = Post.objects.create(author_post=author1, type_post='ar', title='Геополитика', text='Text2Text2Text2Text2Text
+2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2T
+ext2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Tex
+t2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2
+Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Te
+xt2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text
+2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2T
+ext2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Tex
+t2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2
+Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Text2Te
+xt2Text2Text2Text2Text2Text2Text2Text2Text2Text2')
+
+Post3 = Post.objects.create(author_post=author2, type_post='nw', title='Лучшие места для дайвинга', text='Text3Text3
+Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Te
+xt3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text
+3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3T
+ext3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Tex
+t3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3
+Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Te
+xt3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text
+3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3T
+ext3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Tex
+t3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3Text3')
+
+Задание5. Присвоить им категории (как минимум в одной статье/новости должно быть не меньше 2 категорий).
+PostCategory.objects.create(post=Post1, category=category1)
+PostCategory.objects.create(post=Post1, category=category2)
+PostCategory.objects.create(post=Post1, category=category3)
+PostCategory.objects.create(post=Post2, category=category1)
+PostCategory.objects.create(post=Post2, category=category2)
+PostCategory.objects.create(post=Post3, category=category1)
+PostCategory.objects.create(post=Post3, category=category4)
+
+Задание6. Создать как минимум 4 комментария к разным объектам модели Post (в каждом объекте должен быть как минимум один комментарий).
+Comment1 = Comment.objects.create(post=Post1, author=user2, text='comment1')
+Comment2 = Comment.objects.create(post=Post1, author=user1, text='comment2')
+Comment3 = Comment.objects.create(post=Post1, author=user1, text='comment3')
+Comment4 = Comment.objects.create(post=Post2, author=user2, text='comment4')
+Comment5 = Comment.objects.create(post=Post3, author=user2, text='comment5')
+
+Задание7. Применяя функции like() и dislike() к статьям/новостям и комментариям, скорректировать рейтинги этих объектов.
+Comment1.like()
+Comment1.like()
+Comment1.dislike() 
+Comment2.like()    
+Comment3.like() 
+Comment3.like()
+Comment3.like()
+Comment3.dislike() 
+Comment3.dislike()
+Comment3.like()    
+Comment4.like() 
+Comment5.dislike() 
+Comment5.dislike()
+Comment5.like()    
+Post1.like()
+Post1.like()
+Post1.like()
+Post1.dislike()
+Post1.dislike()
+Post2.dislike()
+Post2.dislike()
+Post2.like()
+Post2.like()
+Post2.like()
+Post2.dislike()
+Post2.like()
+Post2.like()
+Post2.like()
+
+Задание8. Обновить рейтинги пользователей.
+author1.update_rating()
+author2.update_rating()
+
+Задание9. Вывести username и рейтинг лучшего пользователя (применяя сортировку и возвращая поля первого объекта).
+Author.objects.all().order_by('-rating').values('user__username', 'rating')[0]
+
+Задание10. Вывести дату добавления, username автора, рейтинг, заголовок и превью лучшей статьи, основываясь на лайках/дислайках к этой статье.
+best_post = Post.objects.all().order_by('-rating').values('date_time_in', 'author_post__user__username', 'rating', 'title')[0]
+best_post
+Post.preview(Post.objects.get(rating=best_post['rating']))
+
+Задание11. Вывести все комментарии (дата, пользователь, рейтинг, текст) к этой статье.
+for c in comment_to_best_post.values('date_time_in', 'author__username', 'rating', 'text'):
+    c
